@@ -1,0 +1,73 @@
+About = About
+
+AboutDesc = Read about softwares creators
+
+UserManual = User Manual
+
+UserManualDesc = Open instructional user manual
+
+English = English
+
+EnglishDesc = Switch to English lanugage
+
+SerbianL = Serbian Latin
+
+SerbianLDesc = Switch to Serbian lanugage(latin)
+
+SerbianC = Serbian Cyrillic
+
+SerbianCDesc = Switch to Serbian lanugage(cyrillic)
+
+AddRecord = Add Record
+
+AddRecordDesc = Add a new record to the table
+
+DeleteRecord = Delete Record
+
+DeleteRecordDesc = Delete the selected record from the table
+
+ModifyRecord = Modify Record
+
+ModifyRecordDesc = Modify the selected record
+
+FirstRecord = First Record
+
+FirstRecordDesc = Move to the first record in current table
+
+LastRecord = Last Record
+
+LastRecordDesc = Move to the last record in current table
+
+NextRecord = Next Record
+
+NextRecordDesc = Move to the next record
+
+PreviousRecord = Previous Record
+
+PreviousRecordDesc = Move to the previous record
+
+Refresh = Refresh
+
+RefreshDesc = Refresh current table
+
+CollapseTree = Collapse Tree
+
+CollapseTreeDesc = Collapse all nodes in the tree
+
+ExpandTree = Expand Tree
+
+ExpandTreeDesc = Expand all nodes in the tree
+
+OpenTable = Open Table
+
+OpenTableDesc = Open currently selected table
+
+File = File
+
+Edit = Edit
+
+Records = Records
+
+Help = Help
+
+Languages = Languages 

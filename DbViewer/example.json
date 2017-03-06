@@ -1,0 +1,55 @@
+{
+  "schemaName" : "mojaBaza",
+  "tables" : [
+	  {
+	  		"name" : "users", 
+	  		"code" : "tMojaBaza_Users_1",
+	  		"columns" : [
+		  		{
+		  			"name" : "id",
+		  			"code" : "cMojaBaza_Users_Id_1",
+		  			"type" : { "type" : "String"},
+		  			"constraint" : { "primaryKey" : true }	  			
+		  		},
+		  		{
+		  			"name" : "username",
+		  			"code" : "cMojaBaza_Users_Username_1",
+		  			"type" : { "type" : "String"}
+		  		},
+		  		{
+		  			"name" : "password", 
+		  			"code" : "cMojaBaza_Users_Password_1",
+		  			"type" : { "type" : "String"}
+		  			
+		  		},
+		  		{
+		  			"name" : "groupId",
+		  			"code" : "cMojaBaza_Users_GroupId_1",
+		  			"type" : { "type" : "String"}
+		  					
+		  		}
+	  		]
+	  		
+	  	}, 
+	  	 {
+	  		"name" : "group", 
+	  		"code" : "tMojaBaza_Group_1",
+	  		"columns" : [
+		  		{
+		  			"name" : "id",
+		  			"code" : "cMojaBaza_Group_Id_1",
+		  			"type" : { "type" : "Long"},
+		  			"constraint" : { "primaryKey" : true }
+		  							
+		  		},
+		  		{
+		  			"name" : "groupName",
+		  			"code" : "cMojaBaza_Group_GroupName_1",
+		  			"type" : { "type" : "String"}
+		  			
+		  		}
+	  		]
+	  		
+	  	}
+  ]
+}

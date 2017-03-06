@@ -1,0 +1,9 @@
+ DBUrl = jdbc:jtds:sqlserver://147.91.175.155:1433/psw-2016-tim5-1
+ DBAlternativeUrl = jdbc:jtds:sqlserver://192.168.77.230:1433/psw-2016-tim5-1
+ DBUsername = psw-2016-tim5-1
+ DBPassword = tim5-1223248
+ Language = Srpski
+ LastUsername = admin
+ LastPassword = 21232f297a57a5a743894a0e4a801fc3
+ 
+ 

@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//src/DynamicLocalization/PSW_MPS_2016_en_US.properties=UTF-8
+encoding//src/action/help/AboutAction.java=UTF-8
+encoding//src/action/language/SerbianCyrillicAction.java=UTF-8
+encoding//src/dialogs/LoginDialog.java=UTF-8
+encoding//src/dialogs/OpeningDialog.java=UTF-8
+encoding//src/gui/panel/SchemaTab.java=UTF-8
+encoding//src/gui/toolbars/MainToolBar.java=UTF-8
+encoding//src/gui/toolbars/TableToolbar.java=UTF-8
+encoding/<project>=UTF-8

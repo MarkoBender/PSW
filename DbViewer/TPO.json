@@ -1,0 +1,687 @@
+{
+	"schemaName" : "PSW",
+	"packages" : [
+		{
+			"packageName" : "TPO",
+			"subPackages" : [
+				{
+					"packageName" : "Podpaket1", 
+					"subPackages" : [
+						{
+							"packageName" : "Podpodpaket1", 
+							"subPackages" : []
+						}
+					]
+				}, 
+				{
+					"packageName" : "Podpaket2", 
+					"subPackages" : []
+				}
+			]		
+		}
+	],
+  	"tables" : [
+		{
+	  		"name" : "Drzavno uredjenje", 
+	  		"code" : "DRZAVNO_UREDJENJE",
+	  		"columns" : [
+		  		{
+		  			"name" : "Oznaka",
+		  			"code" : "DUR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 1 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true}			
+		  		},
+		  		{
+		  			"name" : "Naziv",
+		  			"code" : "DUR_NAZIV",
+		  			"type" : { "type" : "varchar", "length": 40 },
+		  			"constraint" : { "mandatory" : true}				
+		  		}
+	  		],
+	  		"packageName" : "TPO",
+	  		"semanticColumnCodes" : ["DUR_NAZIV"]
+	  	}, 
+		{
+	  		"name" : "Tip regiona", 
+	  		"code" : "TIP_REGIONA",
+	  		"columns" : [
+		  		{
+		  			"name" : "Oznaka",
+		  			"code" : "TR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 1 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true}			
+		  		},
+		  		{
+		  			"name" : "Naziv",
+		  			"code" : "TR_NAZIV",
+		  			"type" : { "type" : "varchar", "length": 30 },
+		  			"constraint" : { "mandatory" : true}				
+		  		}
+	  		],
+	  		"packageName" : "TPO",
+	  		"semanticColumnCodes" : ["TR_NAZIV"]
+	  	},
+	  	{
+	  		"name" : "Drzava", 
+	  		"code" : "DRZAVA",
+	  		"columns" : [
+		  		{
+		  			"name" : "Oznaka",
+		  			"code" : "DR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey": true}			
+		  		},
+		  		{
+		  			"name" : "Naziv",
+		  			"code" : "DR_NAZIV",
+		  			"type" : { "type" : "varchar", "length": 120 },
+		  			"constraint" : { "mandatory" : true}				
+		  		},
+		  		{
+		  			"name" : "Grb",
+		  			"code" : "DR_GRB",
+		  			"type" : { "type" : "image" },
+		  			"constraint" : {}			
+		  		},
+		  		{
+		  			"name" : "Himna",
+		  			"code" : "DR_HIMNA",
+		  			"type" : { "type" : "image" },
+		  			"constraint" : {}							
+		  		},
+		  		{
+		  			"name" : "Zastava",
+		  			"code" : "DR_ZASTAVA",
+		  			"type" : { "type" : "image" },
+		  			"constraint" : {}							
+		  		},
+		  		{
+		  			"name" : "Tekuce drzavno uredenje",
+		  			"code" : "DUR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 1 },
+		  			"constraint" : { "foreignKey" : true}				
+		  		},
+		  		{
+		  			"name" : "Pravni naslednik",
+		  			"code" : "DRZ_DR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 3 },
+		  			"constraint" : { "foreignKey" : true}					
+		  		},
+		  		{
+		  			"name" : "Glavni grad",
+		  			"code" : "NM_OZNAKA",
+		  			"type" : { "type" : "int" },
+		  			"constraint" : { "foreignKey" : true}			
+		  		}
+	  		],
+	  		"references" : [
+	  			{
+	  				"code" : "FK_DRZAVA_GLAVNI_GR_NASELJEN",
+	  				"name" : "Glavni grad drzave",
+	  				"refeeringColumnCodes" : ["DR_OZNAKA","NM_OZNAKA"],
+	  				"referencedTableCode" : "NASELJENO_MESTO",
+	  				"referencedColumnCodes" : ["DR_OZNAKA","NM_OZNAKA"]
+	  			},
+	  			{
+	  				"code" : "FK_DRZAVA_PRAVNI_NA_DRZAVA",
+	  				"name" : "Pravni naslednik drzave",
+	  				"refeeringColumnCodes" : ["DRZ_DR_OZNAKA"],
+	  				"referencedTableCode" : "DRZAVA",
+	  				"referencedColumnCodes" : ["DR_OZNAKA"]
+	  			},
+	  			{
+	  				"code" : "FK_DRZAVA_TEKUCE_UR_DRZAVNO",
+	  				"name" : "Tekuce drzavno uredjenje",
+	  				"refeeringColumnCodes" : ["DUR_OZNAKA"],
+	  				"referencedTableCode" : "DRZAVNO_UREDJENJE",
+	  				"referencedColumnCodes" : ["DUR_OZNAKA"]
+	  			}
+	  		], 
+	  		"packageName" : "TPO",
+	  		"semanticColumnCodes" : ["DR_NAZIV"]
+	  	},
+	  	{
+	  		"name" : "Istorija uredjenja", 
+	  		"code" : "ISTORIJA_UREDJENJA",
+	  		"columns" : [
+		  		{
+		  			"name" : "Drzava",
+		  			"code" : "DR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey": true }			
+		  		},
+		  		{
+		  			"name" : "Broj",
+		  			"code" : "URE_BROJ",
+		  			"type" : { "type" : "numeric", "length": 2 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true}				
+		  		},
+		  		{
+		  			"name" : "Drzavno uredjenje",
+		  			"code" : "DUR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 1 },
+		  			"constraint" : { "foreignKey" : true, "mandatory" : true}				
+		  		},
+		  		{
+		  			"name" : "Od kada",
+		  			"code" : "URE_OD_KADA",
+		  			"type" : { "type" : "datetime"},
+		  			"constraint" : { "mandatory" : true}				
+		  		},
+		  		{
+		  			"name" : "Do kada",
+		  			"code" : "URE_DO_KADA",
+		  			"type" : { "type" : "datetime" },
+		  			"constraint" : {}						
+		  		}
+	  		],
+	  		"references" : [
+	  			{
+	  				"code" : "FK_ISTORIJA_KROZ_ISTO_DRZAVA",
+	  				"name" : "Istorijsko uredjenje drzave",
+	  				"refeeringColumnCodes" : ["DR_OZNAKA"],
+	  				"referencedTableCode" : "DRZAVA",
+	  				"referencedColumnCodes" : ["DR_OZNAKA"]
+	  			},
+	  			{
+	  				"code" : "FK_ISTORIJA_UREDJENJA_DRZAVNO",
+	  				"name" : "Istorijsko uredjenje drzave",
+	  				"refeeringColumnCodes" : ["DUR_OZNAKA"],
+	  				"referencedTableCode" : "DRZAVNO_UREDJENJE",
+	  				"referencedColumnCodes" : ["DUR_OZNAKA"]
+	  			}
+	  		],
+	  		"packageName" : "TPO",
+	  		"semanticColumnCodes" : ["DR_OZNAKA","DUR_OZNAKA"]
+	  	},
+	  	{
+	  		"name" : "Struktura", 
+	  		"code" : "STRUKTURA",
+	  		"columns" : [
+		  		{
+		  			"name" : "Slozena drzava",
+		  			"code" : "DRZ_DR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }			
+		  		},
+		  		{
+		  			"name" : "Drzava u sastavu",
+		  			"code" : "DR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }			
+		  		},
+		  		{
+		  			"name" : "Broj",
+		  			"code" : "DS_BROJ",
+		  			"type" : { "type" : "numeric", "length": 2, "precision" : 0 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true }			
+		  		},
+		  		{
+		  			"name" : "Od",
+		  			"code" : "DS_OD",
+		  			"type" : { "type" : "datetime" },
+		  			"constraint" : {}			
+		  		},
+		  		{
+		  			"name" : "Do",
+		  			"code" : "DS_DO",
+		  			"type" : { "type" : "datetime" },
+		  			"constraint" : {}							
+		  		}
+	  		],
+	  		"references" : [
+	  			{
+	  				"code" : "FK_STRUKTUR_SLOZENA_DRZAVA",
+	  				"name" : "Obuhvatajuca drzava",
+	  				"refeeringColumnCodes" : ["DRZ_DR_OZNAKA"],
+	  				"referencedTableCode" : "DRZAVA",
+	  				"referencedColumnCodes" : ["DR_OZNAKA"]
+	  			},
+	  			{
+	  				"code" : "FK_STRUKTUR_U_NJENOM_DRZAVA",
+	  				"name" : "Sadrzavajuca drzava",
+	  				"refeeringColumnCodes" : ["DR_OZNAKA"],
+	  				"referencedTableCode" : "DRZAVA",
+	  				"referencedColumnCodes" : ["DR_OZNAKA"]
+	  			}
+	  		], 
+	  		"packageName" : "TPO",
+	  		"semanticColumnCodes" : ["DRZ_DR_OZNAKA","DR_OZNAKA"]
+	  	},
+	  	{
+	  		"name" : "Region", 
+	  		"code" : "REGION",
+	  		"columns" : [
+		  		{
+		  			"name" : "Tip",
+		  			"code" : "TR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 1 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }			
+		  		},
+		  		{
+		  			"name" : "Oznaka",
+		  			"code" : "REG_OZNAKA",
+		  			"type" : { "type" : "numeric", "length": 4, "precision": 0 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true }			
+		  		},
+		  		{
+		  			"name" : "Naziv",
+		  			"code" : "REG_NAZIV",
+		  			"type" : { "type" : "varchar", "length": 80 },
+		  			"constraint" : { "mandatory" : true }			
+		  		},
+		  		{
+		  			"name" : "Maticna drzava",
+		  			"code" : "DR_OZNAKA",
+		  			"type" : { "type" : "char", "length" : 3 },
+		  			"constraint" : { "foreignKey" : true }
+		  		},
+		  		{
+		  			"name" : "Drzava sedista",
+		  			"code" : "NAS_DR_OZN",
+		  			"type" : { "type" : "char", "length" : 3 },
+		  			"constraint" : { "foreignKey" : true }
+		  		},
+		  		{
+		  			"name" : "Mesto sedista",
+		  			"code" : "NM_OZNAKA",
+		  			"type" : { "type" : "int" },
+		  			"constraint" : { "foreignKey" : true }					
+		  		}
+	  		],
+	  		"references" : [
+	  			{
+	  				"code" : "FK_REGION_ADMINISTR_NASELJEN",
+	  				"name" : "Administrativni centar regiona",
+	  				"refeeringColumnCodes" : ["NAS_DR_OZN", "NM_OZNAKA"],
+	  				"referencedTableCode" : "NASELJENO_MESTO",
+	  				"referencedColumnCodes" : ["DR_OZNAKA", "NM_OZNAKA"]
+	  			},
+	  			{
+	  				"code" : "FK_REGION_MATICNA_D_DRZAVA",
+	  				"name" : "Maticna drzava regiona",
+	  				"refeeringColumnCodes" : ["DR_OZNAKA"],
+	  				"referencedTableCode" : "DRZAVA",
+	  				"referencedColumnCodes" : ["DR_OZNAKA"]
+	  			},
+	  			{
+	  				"code" : "FK_REGION_TIPIZACIJ_TIP_REGI",
+	  				"name" : "Tip regiona",
+	  				"refeeringColumnCodes" : ["TR_OZNAKA"],
+	  				"referencedTableCode" : "TIP_REGIONA",
+	  				"referencedColumnCodes" : ["TR_OZNAKA"]
+	  			}
+	  		],
+	  		"packageName" : "TPO" 
+	  	},
+	  	{
+	  		"name" : "Struktura regiona", 
+	  		"code" : "STRUKTURA_REGIONA",
+	  		"columns" : [
+		  		{
+		  			"name" : "Tip slozenog",
+		  			"code" : "REG_TR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 1 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }			
+		  		},
+		  		{
+		  			"name" : "Oznaka slozenog",
+		  			"code" : "REG_REG_OZNAKA",
+		  			"type" : { "type" : "numeric", "length": 4, "precision": 0 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }			
+		  		},
+		  		{
+		  			"name" : "Tip regiona u sastavu",
+		  			"code" : "TR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 1 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }			
+		  		},
+		  		{
+		  			"name" : "Region u sastavu",
+		  			"code" : "REG_OZNAKA",
+		  			"type" : { "type" : "numeric", "length" : 4, "precision" : 0 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }
+		  		}
+	  		],
+	  		"references" : [
+	  			{
+	  				"code" : "FK_STRUKTUR_REGION_U_REGION",
+	  				"name" : "Region u sastavu",
+	  				"refeeringColumnCodes" : ["TR_OZNAKA", "REG_OZNAKA"],
+	  				"referencedTableCode" : "REGION",
+	  				"referencedColumnCodes" : ["TR_OZNAKA", "REG_OZNAKA"]
+	  			},
+	  			{
+	  				"code" : "FK_STRUKTUR_SLOZENI_R_REGION",
+	  				"name" : "Slozeni region",
+	  				"refeeringColumnCodes" : ["REG_TR_OZNAKA","REG_REG_OZNAKA"],
+	  				"referencedTableCode" : "REGION",
+	  				"referencedColumnCodes" : ["TR_OZNAKA","REG_OZNAKA"]
+	  			}
+	  		],
+	  		"packageName" : "TPO"
+	  	},
+	  	{
+	  		"name" : "Naseljeno mesto", 
+	  		"code" : "NASELJENO_MESTO",
+	  		"columns" : [
+		  		{
+		  			"name" : "Drzava",
+		  			"code" : "DR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }			
+		  		},
+		  		{
+		  			"name" : "Oznaka",
+		  			"code" : "NM_OZNAKA",
+		  			"type" : { "type" : "int" },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true }			
+		  		},
+		  		{
+		  			"name" : "Naziv",
+		  			"code" : "NM_NAZIV",
+		  			"type" : { "type" : "varchar", "length": 60 },
+		  			"constraint" : { "mandatory" : true }			
+		  		},
+		  		{
+		  			"name" : "PTT oznaka",
+		  			"code" : "NM_PTT_OZNAKA",
+		  			"type" : { "type" : "varchar", "length" : 12 },
+		  			"constraint" : {}			
+		  		}
+	  		],
+	  		"references" : [
+	  			{
+	  				"code" : "FK_NASELJEN_MESTA_U_D_DRZAVA",
+	  				"name" : "Naseljena mesta u drzavi",
+	  				"refeeringColumnCodes" : ["DR_OZNAKA"],
+	  				"referencedTableCode" : "DRZAVA",
+	  				"referencedColumnCodes" : ["DR_OZNAKA"]
+	  			}
+	  		],
+	  		"packageName" : "TPO" 
+	  	},
+	  	{
+	  		"name" : "Struktura naselja", 
+	  		"code" : "STRUKTURA_NASELJA",
+	  		"columns" : [
+		  		{
+		  			"name" : "Drzava",
+		  			"code" : "DR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }			
+		  		},
+		  		{
+		  			"name" : "Slozeno naselje",
+		  			"code" : "NM_OZNAKA",
+		  			"type" : { "type" : "int" },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }			
+		  		},
+		  		{
+		  			"name" : "Naselje-deo",
+		  			"code" : "NAS_NM_OZN",
+		  			"type" : { "type" : "int" },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }			
+		  		}
+	  		],
+	  		"references" : [
+	  			{
+	  				"code" : "FK_STRUKTUR_NASELJE_K_NASELJEN",
+	  				"name" : "Naselje u sastavu",
+	  				"refeeringColumnCodes" : ["DR_OZNAKA", "NAS_NM_OZNAKA"],
+	  				"referencedTableCode" : "NASELJENO_MESTO",
+	  				"referencedColumnCodes" : ["DR_OZNAKA", "NM_OZNAKA"]
+	  			},
+	  			{
+	  				"code" : "FK_STRUKTUR_SLOZENO_N_NASELJEN",
+	  				"name" : "Slozeno naselje",
+	  				"refeeringColumnCodes" : ["DR_OZNAKA", "NM_OZNAKA"],
+	  				"referencedTableCode" : "NASELJENO_MESTO",
+	  				"referencedColumnCodes" : ["DR_OZNAKA", "NM_OZNAKA"]
+	  			}
+	  		],
+	  		"packageName" : "TPO"
+	  	},
+	  	{
+	  		"name" : "Sastav lokala", 
+	  		"code" : "SASTAV_LOKALA",
+	  		"columns" : [
+		  		{
+		  			"name" : "Drzava",
+		  			"code" : "DR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }			
+		  		},
+		  		{
+		  			"name" : "Opstina",
+		  			"code" : "OP_OZNAKA",
+		  			"type" : { "type" : "char", "length": 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }		
+		  		},
+		  		{
+		  			"name" : "Naseljeno mesto",
+		  			"code" : "NM_OZNAKA",
+		  			"type" : { "type" : "int" },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }				
+		  		}
+	  		],
+	  		"references" : [
+	  			{
+	  				"code" : "FK_SASTAV_L_NASELJA_U_OPSTINA",
+	  				"name" : "Naselje u opstini",
+	  				"refeeringColumnCodes" : ["DR_OZNAKA", "OP_OZNAKA"],
+	  				"referencedTableCode" : "OPSTINA",
+	  				"referencedColumnCodes" : ["DR_OZNAKA", "OP_OZNAKA"]
+	  			},
+	  			{
+	  				"code" : "FK_SASTAV_L_OPSTINE_U_NASELJEN",
+	  				"name" : "Opstina u naselju",
+	  				"refeeringColumnCodes" : ["DR_OZNAKA", "NM_OZNAKA"],
+	  				"referencedTableCode" : "NASELJENO_MESTO",
+	  				"referencedColumnCodes" : ["DR_OZNAKA", "NM_OZNAKA"]
+	  			}
+	  		],
+	  		"packageName" : "TPO" 
+	  	},
+	  	{
+	  		"name" : "Opstina", 
+	  		"code" : "OPSTINA",
+	  		"columns" : [
+		  		{
+		  			"name" : "Drzava",
+		  			"code" : "DR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }			
+		  		},
+		  		{
+		  			"name" : "Oznaka",
+		  			"code" : "OP_OZNAKA",
+		  			"type" : { "type" : "char", "length": 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true }			
+		  		},
+		  		{
+		  			"name" : "Naziv",
+		  			"code" : "REG_NAZIV",
+		  			"type" : { "type" : "varchar", "length": 60 },
+		  			"constraint" : { "mandatory" : true }			
+		  		},
+		  		{
+		  			"name" : "Administrativno sediste",
+		  			"code" : "NM_OZNAKA",
+		  			"type" : { "type" : "int" },
+		  			"constraint" : { "foreignKey" : true }
+		  		}
+	  		],
+	  		"references" : [
+	  			{
+	  				"code" : "FK_OPSTINA_OPSTINSKO_NASELJEN",
+	  				"name" : "Naseljeno mesto",
+	  				"refeeringColumnCodes" : ["DR_OZNAKA", "NM_OZNAKA"],
+	  				"referencedTableCode" : "NASELJENO_MESTO",
+	  				"referencedColumnCodes" : ["DR_OZNAKA", "NM_OZNAKA"]
+	  			},
+	  			{
+	  				"code" : "FK_OPSTINA_POSEDUJE_DRZAVA",
+	  				"name" : "Drzava",
+	  				"refeeringColumnCodes" : ["DR_OZNAKA"],
+	  				"referencedTableCode" : "DRZAVA",
+	  				"referencedColumnCodes" : ["DR_OZNAKA"]
+	  			}
+	  		],
+	  		"packageName" : "TPO" 
+	  	},
+	  	{
+	  		"name" : "Opstine u regionu", 
+	  		"code" : "OPSTINE_U_REGIONU",
+	  		"columns" : [
+		  		{
+		  			"name" : "Tip regiona",
+		  			"code" : "TR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 1 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }			
+		  		},
+		  		{
+		  			"name" : "Region",
+		  			"code" : "REG_OZNAKA",
+		  			"type" : { "type" : "numeric", "length": 4, "precision": 0 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }		
+		  		},
+		  		{
+		  			"name" : "Drzava",
+		  			"code" : "DR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }	
+		  		},
+		  		{
+		  			"name" : "Opstina",
+		  			"code" : "OP_OZNAKA",
+		  			"type" : { "type" : "char", "length" : 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }
+		  		}
+	  		],
+	  		"references" : [
+	  			{
+	  				"code" : "FK_OPSTINE__OPSTINE_U_OPSTINA",
+	  				"name" : "Opstina",
+	  				"refeeringColumnCodes" : ["DR_OZNAKA", "OP_OZNAKA"],
+	  				"referencedTableCode" : "OPSTINA",
+	  				"referencedColumnCodes" : ["DR_OZNAKA", "OP_OZNAKA"]
+	  			},
+	  			{
+	  				"code" : "FK_OPSTINE__OPSTINE_U_REGION",
+	  				"name" : "Region",
+	  				"refeeringColumnCodes" : ["TR_OZNAKA", "REG_OZNAKA"],
+	  				"referencedTableCode" : "REGION",
+	  				"referencedColumnCodes" : ["TR_OZNAKA", "REG_OZNAKA"]
+	  			}
+	  		],
+	  		"packageName" : "TPO" 
+	  	},
+	  	{
+	  		"name" : "Mesne zajednice", 
+	  		"code" : "MESNE_ZAJEDNICE",
+	  		"columns" : [
+		  		{
+		  			"name" : "Drzava",
+		  			"code" : "DR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }			
+		  		},
+		  		{
+		  			"name" : "Opstina",
+		  			"code" : "OP_OZNAKA",
+		  			"type" : { "type" : "char", "length": 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }			
+		  		},
+		  		{
+		  			"name" : "Oznaka",
+		  			"code" : "MZ_OZNAKA",
+		  			"type" : { "type" : "numeric", "length": 2, "precision": 0 },
+		  			"constraint" : { "primaryKey": true, "mandatory" : true }			
+		  		},
+		  		{
+		  			"name" : "Naziv",
+		  			"code" : "MZ_NAZIV",
+		  			"type" : { "type" : "varchar", "length" : 120 },
+		  			"constraint" : { "mandatory" : true }
+		  		},
+		  		{
+		  			"name" : "Kancelarija u mestu",
+		  			"code" : "NM_OZNAKA",
+		  			"type" : { "type" : "int" },
+		  			"constraint" : { "foreignKey" : true }
+		  		}
+	  		],
+	  		"references" : [
+	  			{
+	  				"code" : "FK_MESNE_ZA_LOKACIJA__NASELJEN",
+	  				"name" : "Naseljeno mesto",
+	  				"refeeringColumnCodes" : ["DR_OZNAKA", "NM_OZNAKA"],
+	  				"referencedTableCode" : "NASELJENO_MESTO",
+	  				"referencedColumnCodes" : ["DR_OZNAKA", "NM_OZNAKA"]
+	  			},
+	  			{
+	  				"code" : "FK_MESNE_ZA_MESNA_POD_OPSTINA",
+	  				"name" : "Opstina",
+	  				"refeeringColumnCodes" : ["DR_OZNAKA", "OP_OZNAKA"],
+	  				"referencedTableCode" : "OPSTINA",
+	  				"referencedColumnCodes" : ["DR_OZNAKA", "OP_OZNAKA"]
+	  			}
+	  		],
+	  		"packageName" : "TPO" 
+	  	},
+	  	{
+	  		"name" : "Obuhvata naselja", 
+	  		"code" : "OBUHVATA_NASELJA",
+	  		"columns" : [
+		  		{
+		  			"name" : "Oznaka drzave",
+		  			"code" : "DR_OZNAKA",
+		  			"type" : { "type" : "char", "length": 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }			
+		  		},
+		  		{
+		  			"name" : "Oznaka opstine",
+		  			"code" : "OP_OZNAKA",
+		  			"type" : { "type" : "char", "length": 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }		
+		  		},
+		  		{
+		  			"name" : "Oznaka mesne zajednice",
+		  			"code" : "MZ_OZNAKA",
+		  			"type" : { "type" : "numeric", "length": 2, "precision" : 0 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }	
+		  		},
+		  		{
+		  			"name" : "Drzava sedista",
+		  			"code" : "NAS_DR_OZNAKA",
+		  			"type" : { "type" : "char", "length" : 3 },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }
+		  		},
+		  		{
+		  			"name" : "Oznaka naseljenog mesta",
+		  			"code" : "NM_OZNAKA",
+		  			"type" : { "type" : "int" },
+		  			"constraint" : { "primaryKey" : true, "mandatory" : true, "foreignKey" : true }
+		  		}
+	  		],
+	  		"references" : [
+	  			{
+	  				"code" : "FK_OBUHVATA_OBUHVATA__MESNE_ZA",
+	  				"name" : "Mesna zajednica",
+	  				"refeeringColumnCodes" : ["DR_OZNAKA", "OP_OZNAKA", "MZ_OZNAKA"],
+	  				"referencedTableCode" : "MESNE_ZAJEDNICE",
+	  				"referencedColumnCodes" : ["DR_OZNAKA", "OP_OZNAKA", "MZ_OZNAKA"]
+	  			},
+	  			{
+	  				"code" : "FK_OBUHVATA_OBUHVATA__NASELJEN",
+	  				"name" : "Naseljeno mesto",
+	  				"refeeringColumnCodes" : ["DR_OZNAKA", "NM_OZNAKA"],
+	  				"referencedTableCode" : "NASELJENO_MESTO",
+	  				"referencedColumnCodes" : ["DR_OZNAKA", "NM_OZNAKA"]
+	  			}
+	  		],
+	  		"packageName" : "TPO"
+	  	}
+  	]
+}
